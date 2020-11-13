@@ -13,9 +13,29 @@ class AppWithContext extends React.Component {
     }
   }
 
-  createTask = (task) => {};
+  createTask = (task) => {
+    const newTaskId = new Date().getTime();     
+    const newTask = {
+        [nextTaskId]: {
+            id: nextTaskId, 
+            message: task,
+        }
+    };
 
-  deleteTask = (id) => {};
+    this.setState((state, props) => ({
+        tasks: {...state.tasks, ...newTask}, 
+    }), () => this.updateLocalStorageTasks()); 
+  };
+
+  deleteTask = (id) => {
+      this.setState((state, props) => {
+          const tasksWithDeletion = { ...state.tasks };
+          delete tasksWithDeletion[id]; 
+          return {
+              tasks: tasksWithDeletion, 
+          };
+      }, () => this.updateLocalStorageTasks()); 
+  };
 
   updateLocalStorageTasks = () => {
     console.log(this.state.tasks);
@@ -23,8 +43,8 @@ class AppWithContext extends React.Component {
     localStorage.setItem("tasks", jsonTasks);
   };
 
-        render() {
-        return ()
+    render() {
+    return ()
     }
 }
 
