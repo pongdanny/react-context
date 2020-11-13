@@ -44,7 +44,11 @@ class AppWithContext extends React.Component {
   };
 
     render() {
-    return ()
+    return (
+        <TodoContext.Provider value={this.state}>
+            <App /> 
+        </TodoContext.Provider> 
+    );
     }
 }
 
