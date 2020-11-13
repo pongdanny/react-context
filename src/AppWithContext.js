@@ -5,7 +5,12 @@ import App from "./App.js";
 class AppWithContext extends React.Component {
   constructor() {
     super();
-    const storeTasks = JSON.parse(localStorage.getItem("tasks"));
+    const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+    this.state={
+    tasks: storedTasks || {},
+    createTask: this.createTask,
+    deleteTask: this.deleteTask
+    }
   }
 
   createTask = (task) => {};
